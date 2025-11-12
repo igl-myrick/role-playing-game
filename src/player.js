@@ -6,7 +6,7 @@ export default class Player {
   }
 
   determineStats(playerClass) {
-    warriorStats = {
+    const warriorStats = {
       hp: 100,
       atk: 60,
       def: 40,
@@ -15,7 +15,7 @@ export default class Player {
       critRate: 5
     }
 
-    spellswordStats = {
+    const spellswordStats = {
       hp: 100,
       atk: 0,
       def: 40,
@@ -24,7 +24,7 @@ export default class Player {
       critRate: 5
     }
 
-    archerStats = {
+    const archerStats = {
       hp: 100,
       atk: 60,
       def: 15,
@@ -33,7 +33,7 @@ export default class Player {
       critRate: 10
     }
 
-    mageStats = {
+    const mageStats = {
       hp: 100,
       atk: 0,
       def: 15,
@@ -41,16 +41,16 @@ export default class Player {
       spDef: 30,
       critRate: 10
     }
-    
+
     switch (playerClass) {
       case "Warrior":
-        stats = warriorStats;
+        return this.stats = warriorStats;
       case "Spellsword":
-        stats = spellswordStats;
+        return this.stats = spellswordStats;
       case "Archer":
-        stats = archerStats;
+        return this.stats = archerStats;
       case "Mage":
-        stats = mageStats;
+        return this.stats = mageStats;
     }
   }
 
