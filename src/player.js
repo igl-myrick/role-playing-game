@@ -41,7 +41,7 @@ export default class Player {
       spDef: 30,
       critRate: 10
     }
-
+    
     switch (playerClass) {
       case "Warrior":
         return this.stats = warriorStats;
@@ -56,10 +56,6 @@ export default class Player {
 
   rollCrit() {
     const result = Math.floor(Math.random() * 10) + 1;
-    if (result === 10) {
-      return true;
-    } else {
-      return false;
-    }
+    return result;
   }
 }
