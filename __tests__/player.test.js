@@ -29,4 +29,13 @@ describe("Player", () => {
       expect(player4.stats).toEqual({ hp: 100, atk: 0, def: 15, spAtk: 60, spDef: 30, critRate: 10 });
     });
   });
-});
+
+  describe("Player.rollCrit", () => {
+    test("should return a number between 1 and 10", () => {
+      const player1 = new Player("John", "Warrior");
+      const rollResult = player1.rollCrit();
+      expect(rollResult).toBeGreaterThan(0)
+      expect(rollResult).toBeLessThan(11);
+    });
+  });
+})
