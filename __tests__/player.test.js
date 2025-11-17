@@ -25,8 +25,8 @@ describe("Player", () => {
 
       expect(player1.stats).toEqual({ hp: 100, atk: 60, def: 40, spAtk: 0, spDef: 20, critRate: 5 });
       expect(player2.stats).toEqual({ hp: 100, atk: 0, def: 40, spAtk: 20, spDef: 60, critRate: 5 });
-      expect(player3.stats).toEqual({ hp: 100, atk: 60, def: 15, spAtk: 0, spDef: 30, critRate: 10 });
-      expect(player4.stats).toEqual({ hp: 100, atk: 0, def: 15, spAtk: 60, spDef: 30, critRate: 10 });
+      expect(player3.stats).toEqual({ hp: 100, atk: 70, def: 15, spAtk: 0, spDef: 30, critRate: 10 });
+      expect(player4.stats).toEqual({ hp: 100, atk: 0, def: 15, spAtk: 70, spDef: 30, critRate: 10 });
     });
   });
 

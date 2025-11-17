@@ -26,7 +26,7 @@ export default class Player {
 
     const archerStats = {
       hp: 100,
-      atk: 60,
+      atk: 70,
       def: 15,
       spAtk: 0,
       spDef: 30,
@@ -37,7 +37,7 @@ export default class Player {
       hp: 100,
       atk: 0,
       def: 15,
-      spAtk: 60,
+      spAtk: 70,
       spDef: 30,
       critRate: 10
     }
