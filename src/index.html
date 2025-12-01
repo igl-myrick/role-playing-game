@@ -7,8 +7,8 @@
     <div class="container">
       <h2 class="text-center">Role-playing Game</h2>
       <div id="setup-wrapper">
-        <p>Please enter your character's information.</p>
-        <form id="setup-form">
+        <p class="text-center">Please enter your character's information.</p>
+        <form id="setup-form" class="d-flex justify-content-center">
           <div class="form-group">
             <label for="name-input">Please enter your name:</label>
             <input id="name-input" type="text" name="name-input">
@@ -22,37 +22,46 @@
               <option value="3">Mage</option>
             </select>
           </div>
-          <button type="submit">Submit</button>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
         </form>
-        <p id="error-output"></p>
+        <p id="error-output" class="text-center"></p>
       </div>
 
       <div id="game-content" class="hidden">
         <div class="row">
           <div id="player-field" class="col">
-            <h5 id="player-info"><span id="player-name"></span> the <span id="player-class"></span></h5>
-            <p id="player-hp">HP: <span id="player-hp-value">100</span></p>
+            <h5 id="player-info" class="text-center"><span id="player-name"></span> the <span id="player-class"></span></h5>
+            <p id="player-hp" class="text-center">HP: <span id="player-hp-value">100</span></p>
             <div id="player-action-log"></div>
           </div>
-          <div id="opponent-field" class="col float-right">
-            <h5 id="opponent-info"><span id="opponent-name"></span> the <span id="opponent-class"></span></h5>
-            <p id="opponent-hp">HP: <span id="opponent-hp-value">100</span></p>
+          <div id="opponent-field" class="col">
+            <h5 id="opponent-info" class="text-center"><span id="opponent-name"></span> the <span id="opponent-class"></span></h5>
+            <p id="opponent-hp" class="text-center">HP: <span id="opponent-hp-value">100</span></p>
             <div id="opponent-action-log"></div>
           </div>
         </div>
-        
-        <div class="row" id="player-actions">
-          <div class="col-md-3">
-            <button type="button" class="btn btn-danger" id="attack-button">Attack</button>
+        <hr>
+        <div class="row">
+          <div class="col" id="player-actions">
+            <div class="row">
+              <div class="col-md-3">
+                <button type="button" class="btn btn-danger" id="attack-button">Attack</button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-primary" id="defend-button">Defend</button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-warning" id="end-turn-button">End turn</button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-dark" id="surrender-button">Surrender</button>
+              </div>
+            </div>
           </div>
-          <div class="col-md-3">
-            <button type="button" class="btn btn-primary" id="defend-button">Defend</button>
-          </div>
-          <div class="col-md-3">
-            <button type="button" class="btn btn-warning" id="end-turn-button">End turn</button>
-          </div>
-          <div class="col-md-3">
-            <button type="button" class="btn btn-dark" id="surrender-button">Surrender</button>
+          <div class="col" id="action-log">
+
           </div>
         </div>
       </div>
