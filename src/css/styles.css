@@ -1,0 +1,11 @@
+.hidden {
+  display: none;
+}
+
+.vh-50 {
+  height: 50vh;
+}
+
+#player-field {
+  padding-bottom: 40px;
+}
