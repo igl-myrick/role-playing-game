@@ -4,9 +4,9 @@ const warriorStats = {
   name: "Warrior",
   hp: 100,
   atk: 60,
-  def: 40,
+  def: 20,
   spAtk: 0,
-  spDef: 20,
+  spDef: 15,
   critRate: 5
 };
 
@@ -14,19 +14,19 @@ const spellswordStats = {
   name: "Spellsword",
   hp: 100,
   atk: 0,
-  def: 40,
-  spAtk: 20,
-  spDef: 60,
+  def: 20,
+  spAtk: 60,
+  spDef: 15,
   critRate: 5
 };
 
 const archerStats = {
   name: "Archer",
   hp: 100,
-  atk: 70,
+  atk: 60,
   def: 15,
   spAtk: 0,
-  spDef: 30,
+  spDef: 20,
   critRate: 10
 };
 
@@ -35,8 +35,8 @@ const mageStats = {
   hp: 100,
   atk: 0,
   def: 15,
-  spAtk: 70,
-  spDef: 30,
+  spAtk: 60,
+  spDef: 20,
   critRate: 10
 };
 
