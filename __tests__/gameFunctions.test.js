@@ -13,10 +13,10 @@ describe("rollCrit", () => {
   });
 });
 
-describe("handleCombat", () => {
+describe("rollCombat", () => {
   const playerAtk = 60;
   const opponentDef = 20;
-  const combatResult = handleCombat(playerAtk, opponentDef);
+  const combatResult = rollCombat(playerAtk, opponentDef);
 
   test("should return a number", () => {
     expect(typeof combatResult).toEqual("number");

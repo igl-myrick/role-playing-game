@@ -3,7 +3,7 @@ export const rollCrit = () => {
   return result;
 }
 
-export const handleCombat = (atk, def) => {
+export const rollCombat = (atk, def) => {
   const result = (atk / def) * 3;
   return result;
 }
