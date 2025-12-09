@@ -2,6 +2,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/styles.css";
 import { names, classes } from './gameData.js';
+import { rollCombat, rollCrit } from './gameFunctions.js';
 // import { changeState } from './changeState.js';
 // import { storeState } from './storeState.js';
 
@@ -24,6 +25,24 @@ function handleSetup(e) {
   document.querySelector("#game-content").classList.remove("hidden");
 }
 
+function switchTurns() {
+  document.querySelector("#attack-button").classList.add("hidden");
+  document.querySelector("#defend-button").classList.add("hidden");
+  document.querySelector("#end-turn-button").classList.add("hidden");
+  document.querySelector("#surrender-button").classList.add("hidden");
+  
+  setTimeout(1000, handleOpponentTurn);
+
+  document.querySelector("#attack-button").classList.remove("hidden");
+  document.querySelector("#defend-button").classList.remove("hidden");
+  document.querySelector("#end-turn-button").classList.remove("hidden");
+  document.querySelector("#surrender-button").classList.remove("hidden");
+}
+
 window.addEventListener("load", function() {
   document.querySelector("#setup-form").addEventListener("submit", handleSetup);
+  // document.querySelector("#attack-button").addEventListener("click", handleAttack);
+  // document.querySelector("#defend-button").addEventListener("click", handleDefense);
+  // document.querySelector("#end-turn-button").addEventListener("click", handleEndTurn);
+  // document.querySelector("#surrender-button").addEventListener("click", handleSurrender);
 });
