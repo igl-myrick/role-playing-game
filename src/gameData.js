@@ -5,18 +5,14 @@ const warriorStats = {
   hp: 100,
   atk: 60,
   def: 20,
-  spAtk: 0,
-  spDef: 15,
   critRate: 5
 };
 
 const spellswordStats = {
   name: "Spellsword",
   hp: 100,
-  atk: 0,
+  atk: 60,
   def: 20,
-  spAtk: 60,
-  spDef: 15,
   critRate: 5
 };
 
@@ -25,19 +21,30 @@ const archerStats = {
   hp: 100,
   atk: 60,
   def: 15,
-  spAtk: 0,
-  spDef: 20,
   critRate: 10
 };
 
 const mageStats = {
   name: "Mage",
   hp: 100,
-  atk: 0,
+  atk: 60,
   def: 15,
-  spAtk: 60,
-  spDef: 20,
   critRate: 10
 };
 
 export const classes = [warriorStats, spellswordStats, archerStats, mageStats];
+
+export const rollTen = () => {
+  const result = Math.floor(Math.random() * 10) + 1;
+  return result;
+};
+
+export const rollCombat = (atk, def) => {
+  const result = (atk / def) * 3;
+  const critRoll = rollTen();
+  if (critRoll === 10) {
+    return result * 2;
+  } else {
+    return result; 
+  }
+};
