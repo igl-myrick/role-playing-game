@@ -1,8 +1,7 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/styles.css";
-import { names, classes } from './gameData.js';
-import { rollCombat, rollCrit } from './gameFunctions.js';
+import { names, classes, rollCombat } from './gameData.js';
 // import { changeState } from './changeState.js';
 // import { storeState } from './storeState.js';
 
@@ -25,23 +24,72 @@ function handleSetup(e) {
   document.querySelector("#game-content").classList.remove("hidden");
 }
 
-function switchTurns() {
-  document.querySelector("#attack-button").classList.add("hidden");
-  document.querySelector("#defend-button").classList.add("hidden");
-  document.querySelector("#end-turn-button").classList.add("hidden");
-  document.querySelector("#surrender-button").classList.add("hidden");
-  
-  setTimeout(1000, handleOpponentTurn);
+function getClasses() {
+  const playerClass = parseInt(document.querySelector("#class-select").value);
 
-  document.querySelector("#attack-button").classList.remove("hidden");
-  document.querySelector("#defend-button").classList.remove("hidden");
-  document.querySelector("#end-turn-button").classList.remove("hidden");
-  document.querySelector("#surrender-button").classList.remove("hidden");
+  const opponentClassName = document.querySelector("#opponent-class").innerText;
+  let opponentClass;
+
+  if (opponentClassName === "Warrior") {
+    opponentClass = 0;
+  } else if (opponentClassName === "Spellsword") {
+    opponentClass = 1;
+  } else if (opponentClassName === "Archer") {
+    opponentClass = 2;
+  } else {
+    opponentClass = 3;
+  }
+
+  const result = [classes[playerClass], classes[opponentClass]];
+  return result;
+}
+
+function printAction(str) {
+  const actionLog = document.getElementById("log-wrapper");
+  const actionP = document.createElement("p");
+  actionP.innerText = str;
+  actionLog.append(actionP);
+}
+
+function handleAttack() {
+  const classes = getClasses();
+  const result = rollCombat(classes[0].atk, classes[1].def);
+  applyDmg(result, "player-hp-value");
+  printAction(`${result} damage!`);
+}
+
+// function handleOpponentTurn() {
+//   const actionRoll = rollTen();
+//   const critRoll = rollTen();
+//   const classes = getClasses();
+//   if (actionRoll <= 1) {
+
+//   } else {
+//     const result = rollCombat(classes[1], classes[0]);
+//   }
+// }
+
+// function switchTurns() {
+//   document.querySelector("#attack-button").classList.add("hidden");
+//   document.querySelector("#defend-button").classList.add("hidden");
+//   document.querySelector("#end-turn-button").classList.add("hidden");
+//   document.querySelector("#surrender-button").classList.add("hidden");
+  
+//   setTimeout(1000, handleOpponentTurn);
+
+//   document.querySelector("#attack-button").classList.remove("hidden");
+//   document.querySelector("#defend-button").classList.remove("hidden");
+//   document.querySelector("#end-turn-button").classList.remove("hidden");
+//   document.querySelector("#surrender-button").classList.remove("hidden");
+// }
+
+function endGame() {
+
 }
 
 window.addEventListener("load", function() {
   document.querySelector("#setup-form").addEventListener("submit", handleSetup);
-  // document.querySelector("#attack-button").addEventListener("click", handleAttack);
+  document.querySelector("#attack-button").addEventListener("click", handleAttack);
   // document.querySelector("#defend-button").addEventListener("click", handleDefense);
   // document.querySelector("#end-turn-button").addEventListener("click", handleEndTurn);
   // document.querySelector("#surrender-button").addEventListener("click", handleSurrender);
