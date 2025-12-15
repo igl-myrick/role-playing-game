@@ -5,6 +5,26 @@ import { names, classes, rollCombat } from './gameData.js';
 // import { changeState } from './changeState.js';
 // import { storeState } from './storeState.js';
 
+// const stateControl = storeState();
+let defendState = false;
+
+function applyDmg(dmg, str) {
+  if (defendState = true) {
+    const updatedHp = parseInt(document.getElementById(str).innerText) - (dmg / 2);
+  } else {
+    const updatedHp = parseInt(document.getElementById(str).innerText) - dmg;
+  }
+  // const invertedDmg = dmg * -1;
+  // const newState = changeState("hp")(invertedDmg);
+  // const updatedHp = stateControl(newState);
+  // console.log(updatedHp);
+  if (updatedHp <= 0) {
+    endGame();
+  } else {
+    document.getElementById(str).innerText = updatedHp;
+  }
+}
+
 function handleSetup(e) {
   e.preventDefault();
   const playerName = document.querySelector("#name-input").value;
@@ -82,10 +102,6 @@ function handleAttack() {
 //   document.querySelector("#end-turn-button").classList.remove("hidden");
 //   document.querySelector("#surrender-button").classList.remove("hidden");
 // }
-
-function endGame() {
-
-}
 
 window.addEventListener("load", function() {
   document.querySelector("#setup-form").addEventListener("submit", handleSetup);
