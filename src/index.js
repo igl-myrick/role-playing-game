@@ -6,24 +6,6 @@ import { names, classes, rollCombat } from './gameData.js';
 // import { storeState } from './storeState.js';
 
 // const stateControl = storeState();
-let defendState = false;
-
-function applyDmg(dmg, str) {
-  if (defendState = true) {
-    const updatedHp = parseInt(document.getElementById(str).innerText) - (dmg / 2);
-  } else {
-    const updatedHp = parseInt(document.getElementById(str).innerText) - dmg;
-  }
-  // const invertedDmg = dmg * -1;
-  // const newState = changeState("hp")(invertedDmg);
-  // const updatedHp = stateControl(newState);
-  // console.log(updatedHp);
-  if (updatedHp <= 0) {
-    endGame();
-  } else {
-    document.getElementById(str).innerText = updatedHp;
-  }
-}
 
 function handleSetup(e) {
   e.preventDefault();
@@ -64,6 +46,19 @@ function getClasses() {
   return result;
 }
 
+function applyDmg(dmg, str) {
+  const updatedHp = parseInt(document.getElementById(str).innerText) - dmg;
+  // const invertedDmg = dmg * -1;
+  // const newState = changeState("hp")(invertedDmg);
+  // const updatedHp = stateControl(newState);
+  // console.log(updatedHp);
+  if (updatedHp <= 0) {
+    endGame();
+  } else {
+    document.getElementById(str).innerText = updatedHp;
+  }
+}
+
 function printAction(str) {
   const actionLog = document.getElementById("log-wrapper");
   const actionP = document.createElement("p");
@@ -72,22 +67,26 @@ function printAction(str) {
 }
 
 function handleAttack() {
+  const playerName = document.querySelector("#player-name").innerText;
   const classes = getClasses();
   const result = rollCombat(classes[0].atk, classes[1].def);
-  applyDmg(result, "player-hp-value");
-  printAction(`${result} damage!`);
+  applyDmg(result, "opponent-hp-value");
+  printAction(`${playerName} deals ${result} damage!`);
+  switchTurns();
 }
 
-// function handleOpponentTurn() {
-//   const actionRoll = rollTen();
-//   const critRoll = rollTen();
-//   const classes = getClasses();
-//   if (actionRoll <= 1) {
-
-//   } else {
-//     const result = rollCombat(classes[1], classes[0]);
-//   }
-// }
+function handleOpponentTurn() {
+  const opponentName = document.querySelector("#opponent-name").innerText;
+  const classes = getClasses();
+  const actionRoll = Math.floor(Math.random() * 4);
+  if (actionRoll === 0) {
+    printAction(`${opponentName} defends!`);
+  } else {
+    const result = rollCombat(classes[1].atk, classes[0].def);
+    applyDmg(result, "player-hp-value");
+    printAction(`${opponentName} deals ${result} damage!`);
+  }
+}
 
 // function switchTurns() {
 //   document.querySelector("#attack-button").classList.add("hidden");
