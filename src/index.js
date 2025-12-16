@@ -53,7 +53,7 @@ function applyDmg(dmg, str) {
   // const updatedHp = stateControl(newState);
   // console.log(updatedHp);
   if (updatedHp <= 0) {
-    endGame();
+    handleGameOver();
   } else {
     document.getElementById(str).innerText = updatedHp;
   }
@@ -63,6 +63,7 @@ function printAction(str) {
   const actionLog = document.getElementById("log-wrapper");
   const actionP = document.createElement("p");
   actionP.innerText = str;
+  actionP.classList.add("action");
   actionLog.append(actionP);
 }
 
@@ -72,13 +73,13 @@ function handleAttack() {
   const result = rollCombat(classes[0].atk, classes[1].def);
   applyDmg(result, "opponent-hp-value");
   printAction(`${playerName} deals ${result} damage!`);
-  switchTurns();
+  handleOpponentTurn();
 }
 
 function handleOpponentTurn() {
   const opponentName = document.querySelector("#opponent-name").innerText;
   const classes = getClasses();
-  const actionRoll = Math.floor(Math.random() * 4);
+  const actionRoll = Math.floor(Math.random() * 5);
   if (actionRoll === 0) {
     printAction(`${opponentName} defends!`);
   } else {
@@ -88,19 +89,26 @@ function handleOpponentTurn() {
   }
 }
 
-// function switchTurns() {
-//   document.querySelector("#attack-button").classList.add("hidden");
-//   document.querySelector("#defend-button").classList.add("hidden");
-//   document.querySelector("#end-turn-button").classList.add("hidden");
-//   document.querySelector("#surrender-button").classList.add("hidden");
-  
-//   setTimeout(1000, handleOpponentTurn);
+function handleGameOver(winner) {
+  document.querySelector("#game-content").classList.add("hidden");
+  document.querySelector("#game-over-screen").classList.remove("hidden");
+  document.querySelector("#game-over-text").innerText = `${winner} wins!`;
+}
 
-//   document.querySelector("#attack-button").classList.remove("hidden");
-//   document.querySelector("#defend-button").classList.remove("hidden");
-//   document.querySelector("#end-turn-button").classList.remove("hidden");
-//   document.querySelector("#surrender-button").classList.remove("hidden");
-// }
+function resetGame() {
+  document.querySelector("#name-input").value = null;
+  document.querySelector("#player-name").innerText = "";
+  document.querySelector("#player-class").innerText = "";
+  document.querySelector("#player-hp-value").innerText = "100";
+  document.querySelector("#opponent-name").innerText = "";
+  document.querySelector("#opponent-class").innerText = "";
+  document.querySelector("#opponent-hp-value").innerText = "100";
+
+  document.querySelectorAll(".action").forEach(element => element.remove());
+
+  document.querySelector("#game-over-screen").classList.add("hidden");
+  document.querySelector("#setup-wrapper").classList.remove("hidden");
+}
 
 window.addEventListener("load", function() {
   document.querySelector("#setup-form").addEventListener("submit", handleSetup);
@@ -108,4 +116,5 @@ window.addEventListener("load", function() {
   // document.querySelector("#defend-button").addEventListener("click", handleDefense);
   // document.querySelector("#end-turn-button").addEventListener("click", handleEndTurn);
   // document.querySelector("#surrender-button").addEventListener("click", handleSurrender);
+  document.querySelector("#reset-button").addEventListener("click", resetGame);
 });
