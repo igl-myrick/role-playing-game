@@ -52,11 +52,7 @@ function applyDmg(dmg, str) {
   // const newState = changeState("hp")(invertedDmg);
   // const updatedHp = stateControl(newState);
   // console.log(updatedHp);
-  if (updatedHp <= 0) {
-    handleGameOver();
-  } else {
-    document.getElementById(str).innerText = updatedHp;
-  }
+  document.getElementById(str).innerText = updatedHp;
 }
 
 function printAction(str) {
@@ -73,7 +69,11 @@ function handleAttack() {
   const result = rollCombat(classes[0].atk, classes[1].def);
   applyDmg(result, "opponent-hp-value");
   printAction(`${playerName} deals ${result} damage!`);
-  handleOpponentTurn();
+  if (parseInt(document.querySelector("#opponent-hp-value").innerText) <= 0) {
+    handleGameOver(playerName);
+  } else {
+    handleOpponentTurn(); 
+  }
 }
 
 function handleOpponentTurn() {
@@ -86,6 +86,9 @@ function handleOpponentTurn() {
     const result = rollCombat(classes[1].atk, classes[0].def);
     applyDmg(result, "player-hp-value");
     printAction(`${opponentName} deals ${result} damage!`);
+  }
+  if (parseInt(document.querySelector("#player-hp-value").innerText) <= 0) {
+    handleGameOver(opponentName);
   }
 }
 
