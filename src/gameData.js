@@ -34,14 +34,9 @@ const mageStats = {
 
 export const classes = [warriorStats, spellswordStats, archerStats, mageStats];
 
-export const rollTen = () => {
-  const result = Math.floor(Math.random() * 10) + 1;
-  return result;
-};
-
 export const rollCombat = (atk, def) => {
   const result = (atk / def) * 3;
-  const critRoll = rollTen();
+  const critRoll = Math.floor(Math.random() * 10) + 1;
   if (critRoll === 10) {
     return result * 2;
   } else {
