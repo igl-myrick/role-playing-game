@@ -40,3 +40,7 @@ _5: Optionally, to view tests, run `npm run test`._
 ## Known Bugs
 
 * _None at the moment._
+
+## License
+
+_[MIT](/LICENSE.md)_
