@@ -2,10 +2,6 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./css/styles.css";
 import { names, classes, rollCombat } from './gameData.js';
-// import { changeState } from './changeState.js';
-// import { storeState } from './storeState.js';
-
-// const stateControl = storeState();
 
 function handleSetup(e) {
   e.preventDefault();
@@ -48,10 +44,6 @@ function getClasses() {
 
 function applyDmg(dmg, str) {
   const updatedHp = parseInt(document.getElementById(str).innerText) - dmg;
-  // const invertedDmg = dmg * -1;
-  // const newState = changeState("hp")(invertedDmg);
-  // const updatedHp = stateControl(newState);
-  // console.log(updatedHp);
   document.getElementById(str).innerText = updatedHp;
 }
 
@@ -76,17 +68,30 @@ function handleAttack() {
   }
 }
 
+// wip - will handle player defend action
+
+// function handleDefense() {
+//   console.log(stateControl());
+//   if (stateControl().defend > 0) {
+//     return;
+//   } else {
+//     stateControl(enableDefend);
+//   }
+//   console.log(stateControl());
+// }
+
 function handleOpponentTurn() {
   const opponentName = document.querySelector("#opponent-name").innerText;
   const classes = getClasses();
-  const actionRoll = Math.floor(Math.random() * 5);
-  if (actionRoll === 0) {
-    printAction(`${opponentName} defends!`);
-  } else {
-    const result = rollCombat(classes[1].atk, classes[0].def);
-    applyDmg(result, "player-hp-value");
-    printAction(`${opponentName} deals ${result} damage!`);
-  }
+  // wip - will handle cpu action choices
+  // const actionRoll = Math.floor(Math.random() * 5);
+  // if (actionRoll === 0) {
+  //   printAction(`${opponentName} defends!`);
+  // } else {
+  const result = rollCombat(classes[1].atk, classes[0].def);
+  applyDmg(result, "player-hp-value");
+  printAction(`${opponentName} deals ${result} damage!`);
+  // }
   if (parseInt(document.querySelector("#player-hp-value").innerText) <= 0) {
     handleGameOver(opponentName);
   }
