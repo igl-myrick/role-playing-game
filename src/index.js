@@ -80,6 +80,11 @@ function handleAttack() {
 //   console.log(stateControl());
 // }
 
+function handleSurrender() {
+  const opponentName = document.querySelector("#opponent-name").innerText;
+  handleGameOver(opponentName);
+}
+
 function handleOpponentTurn() {
   const opponentName = document.querySelector("#opponent-name").innerText;
   const classes = getClasses();
@@ -123,6 +128,6 @@ window.addEventListener("load", function() {
   document.querySelector("#attack-button").addEventListener("click", handleAttack);
   // document.querySelector("#defend-button").addEventListener("click", handleDefense);
   // document.querySelector("#end-turn-button").addEventListener("click", handleEndTurn);
-  // document.querySelector("#surrender-button").addEventListener("click", handleSurrender);
+  document.querySelector("#surrender-button").addEventListener("click", handleSurrender);
   document.querySelector("#reset-button").addEventListener("click", resetGame);
 });
